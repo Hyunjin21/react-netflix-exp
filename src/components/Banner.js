@@ -1,5 +1,5 @@
 import axios from '../api/axios';
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import requests from '../api/request';
 import "./Banner.css"
 import styled from "styled-components";
