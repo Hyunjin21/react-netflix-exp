@@ -21,14 +21,14 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
     const [movieSelected, setMovieSelected] = useState({});
 
     useEffect(() => {
+        const fetchMovieData = async () => {
+            const request = await axios.get(fetchUrl);
+            // console.log('request', request);
+            setMovies(request.data.results);
+        };
         fetchMovieData();
-    }, []);
+    }, [fetchUrl]);
 
-    const fetchMovieData = async () => {
-        const request = await axios.get(fetchUrl);
-        // console.log('request', request);
-        setMovies(request.data.results);
-    };
 
     const handleClick = (movie) => {
         setModalOpen(true);

@@ -56,8 +56,9 @@ export default function SearchPage() {
                                     />
                                 </div>
                             </div>
-                        )
+                        );
                     }
+                    return null;
                 })}
             </section>
         ) : (
