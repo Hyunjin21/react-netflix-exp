@@ -16,8 +16,7 @@ import { BrowserRouter } from 'react-router-dom';
 // React 18 방식
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <BrowserRouter basename="react-netflix">
-  <BrowserRouter>
+  <BrowserRouter basename="react-netflix">
     <App />
   </BrowserRouter>
 );
