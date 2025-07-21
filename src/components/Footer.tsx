@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 export default function Footer() {
     return (
         <FooterContainer>
@@ -20,11 +19,11 @@ export default function Footer() {
                     </FooterLinkContent>
                 </FooterLinkContainer>
                 <FooterDescContainer>
-                    <FooterDescRights>Netflix RIGHTS RESERVED.</FooterDescRights>
+                    <FooterDescRights>© Netflix RIGHTS RESERVED.</FooterDescRights>
                 </FooterDescContainer>
             </FooterContent>
         </FooterContainer>
-    )
+    );
 }
 
 const FooterContainer = styled.div`
@@ -48,7 +47,7 @@ const FooterContent = styled.div``;
 const FooterLinkContainer = styled.div`
     width: 500px;
 
-    @media (max-widht: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
     }
 `;
@@ -77,7 +76,7 @@ const FooterLink = styled.a`
     text-decoration: none;
 
     &:hover {
-        text-decotration: underline;
+        text-decoration: underline;
     }
 
     @media (max-width: 768px) {

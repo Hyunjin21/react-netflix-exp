@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
-import "./SearchPage.css";
+import './SearchPage.css';
 import { useDebounce } from '../../hooks/useDebounce';
+import { Movie } from '../../movie';
 
-export default function SearchPage() {
+const SearchPage: React.FC = () => {
     const navigate = useNavigate();
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState<Movie[]>([]);
 
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
-    }
+    };
 
-    let query = useQuery();
-    const searchTerm = query.get("q");
+    const query = useQuery();
+    const searchTerm = query.get('q');
     const debounceSearchTerm = useDebounce(searchTerm, 500);
 
     useEffect(() => {
@@ -22,27 +23,24 @@ export default function SearchPage() {
         }
     }, [debounceSearchTerm]);
 
-    const fetchSearchMovie = async (searchTerm) => {
-        console.log('searchTerm', searchTerm);
+    const fetchSearchMovie = async (term: string) => {
         try {
-            const request = await axios.get(
-                `/search/multi?inclue_adult=false&query=${searchTerm}`
-            )
-            console.log(request);
+            const request = await axios.get<{ results: Movie[] }>(
+                `/search/multi?include_adult=false&query=${term}`
+            );
             setSearchResults(request.data.results);
-
         } catch (error) {
-            console.log("error", error);
+            console.error('error', error);
         }
-    }
+    };
 
     const renderSearchResults = () => {
         return searchResults.length > 0 ? (
             <section className="search-container">
                 {searchResults.map((movie) => {
-                    if (movie.backdrop_path !== null && movie.media_type !== "person") {
+                    if (movie.backdrop_path !== null && movie.media_type !== 'person') {
                         const movieImageUrl =
-                            "https://image.tmdb.org/t/p/w500" + movie.backdrop_path
+                            'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
                         return (
                             <div className="movie" key={movie.id}>
                                 <div
@@ -64,11 +62,13 @@ export default function SearchPage() {
         ) : (
             <section className="no-results">
                 <div className="no-results__text">
-                    <p>찾고자하는 검색어"{debounceSearchTerm}"에 맞는 영화가 없습니다.</p>
+                    <p>찾고자하는 검색어 "{debounceSearchTerm}"에 맞는 영화가 없습니다.</p>
                 </div>
             </section>
-        )
-    }
+        );
+    };
 
     return renderSearchResults();
 }
+
+export default SearchPage;
