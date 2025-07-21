@@ -1,19 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "Node",
     "jsx": "react-jsx",
-    "strict": true,
-    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "react",
-      "react-dom"
-    ]
+    "skipLibCheck": true
   },
   "include": [
-    "src"
+    "src",
+    "vite.config.js"
   ]
 }
